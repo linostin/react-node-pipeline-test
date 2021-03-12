@@ -1,0 +1,26 @@
+version: 2 # use CircleCI 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout # special step to check out source code to working directory
+
+      - run:
+          name: Install last version Node.js
+          command: 'sudo npm install -g npm@latest'
+
+      - run:
+          name: Install dependencies with NPM
+          command: npm install
+
+      - run:
+          name: Run tests
+          # Runs jest with "--maxWorkers=2" argument to avoid OOM issues
+          command: npm test
+
+workflows:
+  version: 2
+  Build and Test:
+    jobs:
+      - build

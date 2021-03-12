@@ -16,8 +16,11 @@ jobs:
 
       - run:
           name: Run tests
-          # Runs jest with "--maxWorkers=2" argument to avoid OOM issues
           command: npm test
+
+      - run:
+          name: Run App
+          command: npm start
 
 workflows:
   version: 2

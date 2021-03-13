@@ -19,6 +19,10 @@ jobs:
           name: Change directory
           command: cd ..
 
+      - run: 
+          name: List directory
+          command: ls -la
+
       - run:
           name: Install last version Node.js
           command: 'sudo npm install -g npm@latest'
@@ -31,9 +35,9 @@ jobs:
           name: Run tests
           command: npm test
 
-      - run:
-          name: Run App
-          command: npm start
+#      - run:
+#          name: Run App
+#          command: npm start
 
 workflows:
   version: 2

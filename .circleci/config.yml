@@ -17,7 +17,7 @@ jobs:
 
       - run: 
           name: Change directory
-          command: cd '..'
+          command: cd /home/circleci
 
       - run: 
           name: List directory
@@ -27,13 +27,13 @@ jobs:
           name: Install last version Node.js
           command: 'sudo npm install -g npm@latest'
 
-      - run:
-          name: Install dependencies with NPM
-          command: npm install
+#      - run:
+#          name: Install dependencies with NPM
+#          command: npm install
 
-      - run:
-          name: Run tests
-          command: npm test
+#      - run:
+#          name: Run tests
+#          command: npm test
 
 #      - run:
 #          name: Run App

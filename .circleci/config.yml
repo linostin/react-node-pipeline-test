@@ -10,6 +10,14 @@ jobs:
       - run: 
           name: Current directory
           command: pwd
+      
+      - run: 
+          name: List directory
+          command: ls -la
+
+      - run: 
+          name: Change directory
+          command: cd ..
 
       - run:
           name: Install last version Node.js

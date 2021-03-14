@@ -3,30 +3,35 @@ jobs:
   build:
     # working_directory: ./server
     docker:
-      - image: circleci/node:15.11
+      - image: cimg/node:15.11
     steps:
       - checkout # special step to check out source code to working directory
 
       - run: 
           name: Current directory
           command: pwd
-      
+
       - run: 
           name: List directory
           command: ls -la
-          
+
       - run:
           name: Install last version Node.js
           command: 'sudo npm install -g npm@latest'
 
-      - deploy:
-          name: Push application Docker image
+      - run: 
+          name: Build Docker image
           command: |
-            docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
-            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:latest
-            docker push $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
-            docker push $DOCKER_HUB_USER_ID/dockerapp1:latest
+            docker build -t your-image:test .
+
+      # - deploy:
+          # name: Push application Docker image
+          # command: |
+            # docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+            # docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
+            # docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:latest
+            # docker push $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
+            # docker push $DOCKER_HUB_USER_ID/dockerapp1:latest
 #      - run:
 #          name: Install dependencies with NPM
 #          command: npm install
@@ -40,7 +45,6 @@ jobs:
 #          command: npm start
 
 workflows:
-  version: 2
   Build and Test:
     jobs:
       - build

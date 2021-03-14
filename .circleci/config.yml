@@ -31,7 +31,7 @@ jobs:
           command: 'sudo npm install -g npm@latest'
 
       - run: # print the name of the branch we're on
-          name: "What branch am I on?"
+          name: What login you use for Docker Hub
           command: echo $DOCKER_HUB_USER_ID
 
       - run: 

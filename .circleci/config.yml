@@ -55,7 +55,7 @@ jobs:
           name: Build and Push Docker image to Hub
           command: |
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-              docker build -t $DOCKER_HUB_USER_ID/$CIRCLE_PROJECT_REPONAME:$TAG .
+              docker build -t $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:$TAG .
               docker push $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:$TAG
 
 #      - run:

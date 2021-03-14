@@ -15,22 +15,18 @@ jobs:
           name: List directory
           command: ls -la
           
-      - run: 
-          name: List directory
-          command: ls -la
-
       - run:
           name: Install last version Node.js
           command: 'sudo npm install -g npm@latest'
 
-      #- deploy:
-      #    name: Push application Docker image
-      #    command: |
-      #      docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-      #      docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
-      #      docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:latest
-      #      docker push $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
-      #      docker push $DOCKER_HUB_USER_ID/dockerapp1:latest
+      - deploy:
+          name: Push application Docker image
+          command: |
+            docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
+            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:latest
+            docker push $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
+            docker push $DOCKER_HUB_USER_ID/dockerapp1:latest
 #      - run:
 #          name: Install dependencies with NPM
 #          command: npm install

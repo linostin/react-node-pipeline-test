@@ -13,7 +13,7 @@ jobs:
           command: pwd
 
       - run: 
-          name: List_directory_with_code
+          name: List directory with project
           command: ls -la
   
       - run:
@@ -22,7 +22,7 @@ jobs:
 
       - run: # print the name of the branch we're on
           name: "What branch am I on?"
-          command: echo ${$DOCKER_HUB_USER_ID}
+          command: echo ${DOCKER_HUB_USER_ID}
 
       - run: 
           name: Build Docker image

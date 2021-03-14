@@ -1,4 +1,14 @@
 version: 2.1 # use CircleCI 2.0
+
+
+workflows:
+  version: 2
+  Build and Test:
+    jobs:
+      - build
+          context: PIPELINE # name of Context
+
+
 jobs:
   build:
     # working_directory: ./server
@@ -52,9 +62,3 @@ jobs:
 #      - run:
 #          name: Run App
 #          command: npm start
-
-workflows:
-  version: 2
-  Build and Test:
-    jobs:
-      - build

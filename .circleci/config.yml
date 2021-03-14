@@ -57,7 +57,7 @@ jobs:
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
               docker build -t $DOCKER_HUB_USER_ID/$CIRCLE_PROJECT_REPONAME:$TAG .
               docker push $DOCKER_HUB_USER_ID/$CIRCLE_PROJECT_REPONAME:$TAG
-#              docker push $DOCKER_HUB_USER_ID/$CIRCLE_PROJECT_REPONAME:latest
+
 #      - run:
 #          name: Install dependencies with NPM
 #          command: npm install

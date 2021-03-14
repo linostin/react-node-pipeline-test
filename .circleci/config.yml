@@ -22,12 +22,16 @@ jobs:
 
       - run: # print the name of the branch we're on
           name: "What branch am I on?"
-          command: echo ${DOCKER_HUB_USER_ID}
+          command: echo $DOCKER_HUB_USER_ID
+
+      - run: 
+          name: Set up tag 
+          command: echo "export TAG=0.1.$CIRCLE_SHA1" >> $BASH_ENV
 
       - run: 
           name: Build Docker image
           command: |
-            docker build -t your-image:test .
+            docker build -t react-node-pipeline-test:$TAG .
 
       # - deploy:
           # name: Push application Docker image

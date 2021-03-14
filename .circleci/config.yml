@@ -5,7 +5,7 @@ workflows:
   version: 2
   Build and Test:
     jobs:
-      - build
+      - build:
           context: PIPELINE # name of Context
 
 

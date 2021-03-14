@@ -36,7 +36,7 @@ jobs:
 
       - run: 
           name: Set up tag 
-          command: echo "export TAG=$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM" >> $BASH_ENV
+          command: echo "export TAG=$CIRCLE_BUILD_NUM" >> $BASH_ENV
 
       # - run: 
           # name: Build Docker image
@@ -47,12 +47,10 @@ jobs:
           name: Push Docker image to Hub
           command: |
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-            
+              docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/:$TAG
+              docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:latest
               docker push $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
               docker push $DOCKER_HUB_USER_ID/$CIRCLE_PROJECT_REPONAME:latest
-
-            # docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/:$TAG
-            # docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/$CIRCLE_PROJECT_REPONAME:latest
 #      - run:
 #          name: Install dependencies with NPM
 #          command: npm install

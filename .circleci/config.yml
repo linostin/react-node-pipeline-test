@@ -47,7 +47,7 @@ jobs:
           name: Push Docker image to Hub
           command: |
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-              docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/:$TAG
+              docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:$TAG
               docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp1:latest
               docker push $DOCKER_HUB_USER_ID/dockerapp1:$CIRCLE_SHA1
               docker push $DOCKER_HUB_USER_ID/$CIRCLE_PROJECT_REPONAME:latest

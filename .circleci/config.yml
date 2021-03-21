@@ -28,7 +28,7 @@ jobs:
   
       - run:
           name: Install last version Node.js
-          command: 'npm install -g npm@latest'
+          command: 'sudo npm install'
 
       - run:
           name: Set up tag 

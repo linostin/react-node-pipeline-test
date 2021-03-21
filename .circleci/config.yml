@@ -30,10 +30,6 @@ jobs:
           name: Install last version Node.js
           command: 'sudo npm install -g npm@latest'
 
-      - run: # print the name of the branch we're on
-          name: What login you use for Docker Hub
-          command: echo $DOCKER_HUB_USER_ID
-
       - run: 
           name: Set up tag 
           command: echo "export TAG=$CIRCLE_BUILD_NUM" >> $BASH_ENV
@@ -57,6 +53,16 @@ jobs:
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
               docker build -t $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:$TAG .
               docker push $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:$TAG
+
+      - run:
+          name: Grab pub ssh key from host 
+          command: |
+              ssh-keyscan -p $DOSERVPORT $DOSERVER >> ~/.ssh/known_hosts
+
+      - run:
+            name: Deploy app to Digital Ocean Server via Docker
+            command: |
+              ssh -o StrictHostKeyChecking=no $DO_USER@$DOSERVER -p $DOSERVPORT "/bin/bash docker run -d -p 5000:5000  --name node-test linostinhub/$CIRCLE_PROJECT_REPONAME:$TAG"
 
 #      - run:
 #          name: Install dependencies with NPM

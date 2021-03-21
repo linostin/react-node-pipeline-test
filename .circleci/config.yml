@@ -62,7 +62,7 @@ jobs:
       - run:
             name: Deploy app to Digital Ocean Server via Docker
             command: |
-              ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "ls -la"
+              ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "docker run -d -p 5000:5000  --name node-test linostinhub/$CIRCLE_PROJECT_REPONAME:$TAG"
 
 #      - run:
 #          name: Install dependencies with NPM

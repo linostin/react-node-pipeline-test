@@ -28,19 +28,19 @@ jobs:
   
       - run:
           name: Install last version Node.js
-          command: 'sudo npm install -g npm@latest'
+          command: 'npm install -g npm@latest'
 
-      - run: 
+      - run:
           name: Set up tag 
           command: echo "export TAG=$CIRCLE_BUILD_NUM" >> $BASH_ENV
 
-      - run: 
-          name: Docker images 
-          command: docker images
+      #- run: 
+      #    name: Docker images 
+      #    command: docker images
       
-      - run: 
-          name: Docker containers
-          command: docker ps -a
+      #- run: 
+      #    name: Docker containers
+      #    command: docker ps -a
 
       # - run: 
           # name: Build Docker image

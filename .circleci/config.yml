@@ -57,12 +57,12 @@ jobs:
       - run:
           name: Grab pub ssh key from host 
           command: |
-              ssh-keyscan -p $DOSERVPORT $DOSERVER >> ~/.ssh/known_hosts
+              ssh-keyscan -p $DO_SERVPORT $DO_SERVER >> ~/.ssh/known_hosts
 
       - run:
             name: Deploy app to Digital Ocean Server via Docker
             command: |
-              ssh -o StrictHostKeyChecking=no $DO_USER@$DOSERVER -p $DOSERVPORT "/bin/bash docker run -d -p 5000:5000  --name node-test linostinhub/$CIRCLE_PROJECT_REPONAME:$TAG"
+              ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "/bin/bash docker run -d -p 5000:5000  --name node-test linostinhub/$CIRCLE_PROJECT_REPONAME:$TAG"
 
 #      - run:
 #          name: Install dependencies with NPM

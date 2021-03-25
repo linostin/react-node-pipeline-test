@@ -11,7 +11,7 @@
 set -e
 
 DOCKER_IMAGE=$1
-CONTAINER_NAME="node-test"
+CONTAINER_NAME=node-test
 
 # Check for arguments
 if [[ $# -lt 1 ]] ; then
@@ -22,9 +22,13 @@ fi
 echo "Chek if container and image exists and delete them"
 
 #Check for running container & stop it before starting a new one
-if [ $(docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME") = "true" ]; then
-    docker stop "$CONTAINER_NAME" && docker rm "$CONTAINER_NAME"
-    docker rmi "$DOCKER_IMAGE"
+if [ $(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) = "true" ]; then
+    docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME
+    docker rmi $DOCKER_IMAGE
+fi
+
+if [ $(docker inspect -f '{{.State.Exited}}' $CONTAINER_NAME) = "true" ]; then
+    docker rm $CONTAINER_NAME  && docker rmi $DOCKER_IMAGE
 fi
 
 echo "Starting Container Using Docker Image name: $DOCKER_IMAGE"

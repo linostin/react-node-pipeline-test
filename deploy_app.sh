@@ -19,14 +19,15 @@ if [[ $# -lt 1 ]] ; then
     exit 1
 fi
 
-echo "Deploying Hello World to Docker Container"
+echo "Deploying container"
 
 #Check for running container & stop it before starting a new one
 if [ $(docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME") = "true" ]; then
-    docker stop node-test
+    docker stop "$CONTAINER_NAME" && docker rm "$CONTAINER_NAME"
+    docker rmi "$DOCKER_IMAGE"
 fi
 
-echo "Starting Hello World using Docker Image name: $DOCKER_IMAGE"
+echo "Starting Container using Docker Image name: $DOCKER_IMAGE"
 
 docker run -d --rm=true -p 3000:3000  --name node-test $DOCKER_IMAGE
 

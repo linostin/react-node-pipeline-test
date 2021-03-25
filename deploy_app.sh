@@ -19,7 +19,7 @@ if [[ $# -lt 1 ]] ; then
     exit 1
 fi
 
-echo "Deploying container"
+echo "Chek if container and image exists and delete them"
 
 #Check for running container & stop it before starting a new one
 if [ $(docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME") = "true" ]; then
@@ -27,7 +27,7 @@ if [ $(docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME") = "true" ]; the
     docker rmi "$DOCKER_IMAGE"
 fi
 
-echo "Starting Container using Docker Image name: $DOCKER_IMAGE"
+echo "Starting Container Using Docker Image name: $DOCKER_IMAGE"
 
 docker run -d --rm=true -p 3000:3000  --name node-test $DOCKER_IMAGE
 

@@ -8,8 +8,8 @@ COPY package*.json ./
 
 RUN sudo npm install
 
-RUN sudo chown -R circleci /test-app/node_modules
-
 COPY . ./
+
+RUN sudo chown -R circleci /test-app/node_modules
 
 CMD [ "npm", "start" ]

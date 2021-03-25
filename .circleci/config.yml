@@ -52,7 +52,9 @@ jobs:
           command: |
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
               docker build -t $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:$TAG .
+              docker tag $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:$TAG $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:latest
               docker push $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:$TAG
+              docker push $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:latest
 
       - run:
           name: Grab pub ssh key from host 
@@ -62,7 +64,7 @@ jobs:
       - run:
             name: Deploy app to Digital Ocean Server via Docker
             command: |
-              ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "docker run -d -p 3000:3000  --name node-test linostinhub/$CIRCLE_PROJECT_REPONAME:$TAG"
+              ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "docker run -d -p 3000:3000  --name node-test "/bin/bash ./deploy_app.sh $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:latest"
 
 #      - run:
 #          name: Install dependencies with NPM

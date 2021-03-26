@@ -27,9 +27,9 @@ if [ $(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) = "true" ]; then
     docker rmi $DOCKER_IMAGE
 fi
 
-if [ $(docker inspect -f '{{.State.Exited}}' $CONTAINER_NAME) = "true" ]; then
-    docker rm $CONTAINER_NAME  && docker rmi $DOCKER_IMAGE
-fi
+#if [ $(docker inspect -f '{{.State.Exited}}' $CONTAINER_NAME) = "true" ]; then
+#    docker rm $CONTAINER_NAME  && docker rmi $DOCKER_IMAGE
+#fi
 
 echo "Starting Container Using Docker Image name: $DOCKER_IMAGE"
 

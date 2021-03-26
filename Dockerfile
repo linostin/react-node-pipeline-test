@@ -4,12 +4,10 @@ LABEL author="linostin"
 
 WORKDIR /test-app
 
-#COPY package*.json ./
-
 COPY . ./
 
 #RUN sudo npm install
 
-#RUN sudo chown -R circleci /test-app/node_modules
+RUN sudo chown -R circleci /test-app/node_modules
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "start" 

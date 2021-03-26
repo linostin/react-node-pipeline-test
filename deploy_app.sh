@@ -25,6 +25,8 @@ echo "Check if container and image exists and delete them"
 if [ $(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) = "true" ]; then
     docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME
     docker rmi $DOCKER_IMAGE
+    else
+        docker rmi $DOCKER_IMAGE
 fi
 
 #if [ $(docker inspect -f '{{.State.Exited}}' $CONTAINER_NAME) = "true" ]; then

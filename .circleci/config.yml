@@ -42,10 +42,11 @@ jobs:
       #    name: Docker containers
       #    command: docker ps -a
 
-      # - run: 
-          # name: Build Docker image
-          # command: |
-            # docker build -t react-node-pipeline-test:$TAG .
+      - run:
+          name: Add deploy_app.sh script to Server and make +x attr
+          command: |
+            scp ./deploy_app.sh -P $DO_SERVPORT $DO_USER@$DO_SERVER:/home/circleci
+            chmod +x /home/circleci/deploy_app.sh
 
       - run:
           name: Build and Push Docker image to Hub

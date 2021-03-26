@@ -43,12 +43,6 @@ jobs:
       #    command: docker ps -a
 
       - run:
-          name: Add deploy_app.sh script to Server and make +x attr
-          command: |
-            scp ./deploy_app.sh -P $DO_SERVPORT $DO_USER@$DO_SERVER:/home/circleci
-            chmod +x /home/circleci/deploy_app.sh
-
-      - run:
           name: Build and Push Docker image to Hub
           command: |
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
@@ -61,6 +55,12 @@ jobs:
           name: Grab pub ssh key from host 
           command: |
               ssh-keyscan -p $DO_SERVPORT $DO_SERVER >> ~/.ssh/known_hosts
+
+      - run:
+          name: Add deploy_app.sh script to Server and make +x attr
+          command: |
+            scp ./deploy_app.sh -P $DO_SERVPORT $DO_USER@$DO_SERVER:/home/circleci
+            chmod +x /home/circleci/deploy_app.sh
 
       - run:
             name: Deploy app to Digital Ocean Server via Docker

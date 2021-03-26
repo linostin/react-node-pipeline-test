@@ -19,16 +19,10 @@ if [[ $# -lt 1 ]] ; then
     exit 1
 fi
 
-echo "Check if container and image exists and delete them"
+
+echo "If container and image exists then delete and run new"
 
 #Check for running container & stop it before starting a new one
-#if [ $(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) == "true" ]; then
-#    docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME
-#    docker rmi $DOCKER_IMAGE
-#    else
-#        docker rmi $DOCKER_IMAGE
-#fi
-
 
 if [ $(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) == "true" ]; then
     echo $CONTAINER_NAME is Running & docker stop $CONTAINER_NAME & docker rm $CONTAINER_NAME & docker rmi $DOCKER_IMAGE

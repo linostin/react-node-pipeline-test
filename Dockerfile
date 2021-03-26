@@ -10,4 +10,4 @@ COPY . ./
 
 RUN sudo chown -R circleci /test-app/node_modules
 
-CMD [ "npm", "start" 
+CMD [ "npm", "start" ]

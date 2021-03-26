@@ -25,8 +25,8 @@ echo "If container and image exists then delete and run new"
 #Check for running container & stop it before starting a new one
 
 if [ $(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) == "true" ]; then
-    echo $CONTAINER_NAME is Running && docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker rmi $DOCKER_IMAGE
-    else echo "Starting Container Using Docker Image name: $DOCKER_IMAGE" && docker run -d --rm=true -p 3000:3000 --name node-test $DOCKER_IMAGE; 
+    echo $CONTAINER_NAME is Running & docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME & docker rmi $DOCKER_IMAGE
+    else echo "Starting Container Using Docker Image name: $DOCKER_IMAGE" & docker run -d --rm=true -p 3000:3000 --name node-test $DOCKER_IMAGE; 
 fi
 
 

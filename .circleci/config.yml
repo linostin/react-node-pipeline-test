@@ -60,7 +60,7 @@ jobs:
           name: Add deploy_app.sh script to Server and make +x attr
           command: |
             scp ./deploy_app.sh $DO_USER@$DO_SERVER:/home/circleci/
-            ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "/bin/bash chmod +x /home/circleci/deploy_app.sh"
+            ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "chmod +x ./deploy_app.sh"
 
       - run:
             name: Deploy app to Digital Ocean Server via Docker

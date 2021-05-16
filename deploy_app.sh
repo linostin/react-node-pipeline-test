@@ -3,8 +3,7 @@
 # Put this on a Server
 # run chmod +x deploy_app.sh to make the script executable
 # 
-# Execute this script:  ./deploy_app.sh ariv3ra/python-circleci-docker:$TAG
-# Replace the $TAG with the actual Build Tag you want to deploy
+# Execute this script:  ./deploy_app.sh HUB/DOCKER_CONTAINER_NAME:$TAG
 #
 ########################################
 
@@ -22,7 +21,7 @@ fi
 
 echo "If container and image exists then delete and run new"
 
-#Check for running container & stop it before starting a new one
+# Check for running container & stop it before starting a new one
 
 if [ $(docker inspect -f '{{.State.Status}}' $CONTAINER_NAME) == "running" ]; then
     echo $CONTAINER_NAME is Running && docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker rmi $DOCKER_IMAGE
@@ -30,7 +29,5 @@ if [ $(docker inspect -f '{{.State.Status}}' $CONTAINER_NAME) == "running" ]; th
 fi
 
 echo "Starting Container Using Docker Image name: $DOCKER_IMAGE"
-
-#docker run -d --rm=true -p 3000:3000 --name node-test $DOCKER_IMAGE
 
 docker ps -a

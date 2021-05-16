@@ -29,7 +29,7 @@ if [ $(docker inspect -f '{{.State.Status}}' $CONTAINER_NAME) == "running" ]; th
     else echo "Starting Container Using Docker Image name: $DOCKER_IMAGE" && docker run -d --rm=true -p 3000:3000 --name node-test $DOCKER_IMAGE; 
 fi
 
-#echo "Starting Container Using Docker Image name: $DOCKER_IMAGE"
+echo "Starting Container Using Docker Image name: $DOCKER_IMAGE"
 
 #docker run -d --rm=true -p 3000:3000 --name node-test $DOCKER_IMAGE
 

@@ -65,7 +65,7 @@ jobs:
       - run:
             name: Deploy app to Digital Ocean Server via Docker
             command: |
-              ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "/bin/bash ./deploy_app.sh $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:latest"
+              ssh -o StrictHostKeyChecking=no $DO_USER@$DO_SERVER -p $DO_SERVPORT "/bin/bash ./deploy_app.sh $DOCKER_OGR_GROUP_USER/$CIRCLE_PROJECT_REPONAME:latest node-test"
 
 #      - run:
 #          name: Install dependencies with NPM
